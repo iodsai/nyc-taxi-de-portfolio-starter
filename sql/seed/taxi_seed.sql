@@ -114,6 +114,12 @@ VALUES
   (2, 186, 132, 2, 1, '2026-01-10 12:12:00+00', '2026-01-10 12:47:00+00', 2, 19.0, 52.00, 12.00, 67.80),
   (3, 79,  163, 1, 2, '2026-01-10 16:05:00+00', '2026-01-10 16:22:00+00', 1, 3.6,  14.50, 0.00,  16.30);
 
--- Sanity check
--- SELECT COUNT(*) FROM taxi_trips;    -- should return 30
--- SELECT COUNT(*) FROM taxi_zones;    -- should return 8
+-- ---------- Sanity check ----------
+-- Runs live at the end of the seed. Returns 5 rows so you can eyeball
+-- the row counts against expectations without opening a new tab.
+-- Expected: taxi_trips=30, taxi_zones=8, vendors=3, rate_codes=5, payment_types=5
+SELECT 'taxi_trips'    AS table_name, COUNT(*) AS row_count FROM taxi_trips
+UNION ALL SELECT 'taxi_zones',    COUNT(*) FROM taxi_zones
+UNION ALL SELECT 'vendors',       COUNT(*) FROM vendors
+UNION ALL SELECT 'rate_codes',    COUNT(*) FROM rate_codes
+UNION ALL SELECT 'payment_types', COUNT(*) FROM payment_types;
