@@ -8,16 +8,18 @@ The NYC Taxi & Limousine Commission publishes millions of trip records — picku
 
 ## How to use this starter
 
-1. **Clone or copy** this folder into your own Git repo. Name it whatever you like.
-2. **Read the folder READMEs.** Each subdirectory has a `README.md` explaining what belongs there and which course unit produces it.
-3. **Fill it in as you progress.** Section 2 fills `dbml/`, `sql/ddl/`, `sql/seed/`, `sql/queries/`, `sql/tests/`, `docs/`. Later modules fill `notebooks/`, `dbt/`, `orchestration/`, `streaming/`, `dashboard/`.
-4. **Commit small and often.** Each unit ends with a specific deliverable; commit it, tag it with the unit number in the message.
+1. **Fork the template.** Click the green **Use this template** button at the top of this repo → **Create a new repository**. Name it `nyc-taxi-portfolio`, keep it **public** so recruiters can find it. (On a Chromebook or a locked-down laptop where you can't install Python/Postgres locally? Pick *Open in a codespace* on the same menu — full Linux VS Code environment in the browser, no local install needed. GitHub's free tier gives you ~120 core-hours/month.)
+2. **Clone your new repo** locally: `git clone https://github.com/<your-user>/nyc-taxi-portfolio.git && cd nyc-taxi-portfolio`
+3. **Read the folder READMEs.** Each subdirectory has a `README.md` explaining what belongs there and which course unit produces it.
+4. **Fill it in as you progress.** Section 2 fills `dbml/`, `sql/ddl/`, `sql/seed/`, `sql/queries/`, `sql/tests/`, `docs/`. Later modules fill `notebooks/`, `dbt/`, `orchestration/`, `streaming/`, `dashboard/`.
+5. **Commit small and often.** Each unit ends with a specific deliverable; commit it, tag it with the unit number in the message.
 
 ## Folder map — where does what go?
 
 ```
-nyc-taxi-data-engineering-portfolio/
+nyc-taxi-portfolio/
 ├── README.md                    ← you are here
+├── LICENSE                      ← MIT — you're free to fork, remix, ship
 ├── .gitignore                   ← standard Python/SQL/data ignores
 │
 ├── docs/                        ← Design notes, architecture, ADRs
@@ -70,20 +72,28 @@ Later phases (Section 3, Module 2+) add data type layers, SQL fluency, ingestion
 
 ## Getting started right now
 
-```bash
-# 1. Copy this folder into a new git repo of your own
-mkdir ~/nyc-taxi-data-engineering-portfolio
-cp -r . ~/nyc-taxi-data-engineering-portfolio/
-cd ~/nyc-taxi-data-engineering-portfolio
-git init
-git add .
-git commit -m "chore: initial portfolio scaffold from IODS starter"
+Assuming you already used **Use this template** on GitHub and cloned your new repo (see step 1–2 above):
 
-# 2. Open the DataLearn SQL Sandbox (LMS sidebar) and paste sql/seed/taxi_seed.sql
-# 3. Verify tables exist:
-#      SELECT tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tablename;
-# 4. Work through Section 2 Unit 5 onwards, committing each unit's deliverable
+```bash
+# 1. In your cloned repo, open sql/seed/taxi_seed.sql in your editor.
+
+# 2. Copy the entire contents into the DataLearn SQL Sandbox
+#    (LMS sidebar → SQL Sandbox tab) and click Run.
+
+# 3. Verify the 5 tables exist:
+SELECT tablename FROM pg_tables WHERE schemaname = 'public' ORDER BY tablename;
+-- Expected: payment_types, rate_codes, taxi_trips, taxi_zones, vendors
+
+# 4. Verify the row counts:
+SELECT COUNT(*) FROM taxi_trips;    -- 30
+SELECT COUNT(*) FROM taxi_zones;    -- 8
+SELECT COUNT(*) FROM vendors;       -- 3
+
+# 5. Work through Section 2 Unit 5 onwards on datalearn.iods.ai,
+#    committing each unit's deliverable to your portfolio repo as you go.
 ```
+
+Not enrolled in DataLearn yet? Enroll at **[datalearn.iods.ai](https://datalearn.iods.ai)** — Data Engineering course is under the Courses catalog.
 
 ## Interview / portfolio README pattern
 
@@ -108,4 +118,6 @@ Portfolio-quality output beats worksheet answers. The tutor helps you get there 
 
 ---
 
-**License / attribution:** This starter is provided by the Institute of Data Science (IODS) for DataLearn learners. Fork it, remix it, ship it as your own portfolio. Don't republish the course content itself.
+**License / attribution:** This starter (the scaffold code, README, seed SQL, and folder READMEs) is provided by the Institute of Data Science (IODS) for DataLearn learners under the [MIT License](./LICENSE) — fork it, remix it, ship it as your own portfolio, no attribution required.
+
+**One thing that is not MIT-licensed:** the DataLearn course units themselves (HTML lessons, sandboxes, labs, videos). Those live on **[datalearn.iods.ai](https://datalearn.iods.ai)** and are copyrighted course content. Please don't republish or re-host the lessons themselves. This starter repo is the scaffolding around your learning, not a mirror of the course.
