@@ -1,0 +1,48 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+*.egg-info/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Editor ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Data (don't commit large files) ---
+data/samples/*.csv
+data/samples/*.parquet
+data/samples/*.gz
+!data/samples/README.md
+!data/samples/.gitkeep
+!data/samples/*_small.csv
+
+# The full TLC monthly file is 100MB+ — never commit it
+data/samples/yellow_tripdata_*.parquet
+data/samples/fhvhs_tripdata_*.parquet
+
+# --- dbt ---
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/profiles.yml
+
+# --- Notebooks output ---
+notebooks/*.html
+notebooks/output/
+
+# --- Secrets ---
+.env
+.env.local
+*.pem
+*.key
+credentials.json
