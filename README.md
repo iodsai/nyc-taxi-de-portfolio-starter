@@ -95,6 +95,69 @@ SELECT COUNT(*) FROM vendors;       -- 3
 
 Not enrolled in DataLearn yet? Enroll at **[datalearn.iods.ai](https://datalearn.iods.ai)** — Data Engineering course is under the Courses catalog.
 
+## Git workflow — treat every unit like a real PR
+
+Real analytics-engineering teams work through pull requests, not `git push main` cowboy commits. This portfolio uses the same workflow so recruiters see PR history that matches how real teams operate.
+
+**Branch per feature:**
+
+```bash
+# Start a new unit's work on its own branch
+git checkout -b feature/section-2-star-schema
+
+# Do the work, commit incrementally
+git add sql/ddl/02_star_schema.sql
+git commit -m "feat(sql): add star schema DDL for taxi warehouse"
+
+git add sql/loads/03_load_dimensions.sql
+git commit -m "feat(loads): populate dimensions from OLTP source"
+
+# Push the branch and open a PR against main
+git push -u origin feature/section-2-star-schema
+gh pr create --fill
+```
+
+**Commit message convention** (Conventional Commits, mirrors dbt-core):
+
+| Prefix | Use for |
+|---|---|
+| `feat:` | New SQL, DDL, dbt model, notebook, DAG |
+| `fix:` | Bug fix in a query, load, or model |
+| `docs:` | README, design notes, ADRs, data dictionary |
+| `test:` | New quality tests or reconciliation checks |
+| `refactor:` | Rewrite that doesn't change output |
+| `chore:` | Housekeeping — .gitignore, tooling, folder renames |
+
+**PR description template** — save as `.github/pull_request_template.md`:
+
+```markdown
+## What changed?
+
+<!-- One-paragraph summary. What did you build/fix? -->
+
+## Why was this design chosen?
+
+<!-- Trade-offs, constraints, alternatives you rejected. -->
+
+## What is the fact-table grain? (for schema work)
+
+<!-- "One row = one _____" sentence. -->
+
+## Which dimensions use which SCD Type? (for schema work)
+
+<!-- Type 1 / 2 / 4 per dimension, with justification. -->
+
+## What tests prove correctness?
+
+<!-- File paths to tests + expected results. -->
+
+## What trade-offs remain? / What would I do at scale?
+
+<!-- Honest gaps. Recruiters value this more than a spotless PR. -->
+```
+
+Even solo, run every unit through this loop. By Section 8 your repo has 20-30 PRs of history — that IS the portfolio.
+
 ## Interview / portfolio README pattern
 
 When you present this repo to an interviewer, they'll skim the top-level README first. That README should answer:
